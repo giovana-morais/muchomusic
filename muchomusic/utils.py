@@ -5,9 +5,19 @@ import pandas as pd
 
 def get_all_audio_paths(audio_ids, datasets):
     path_to_sdd = os.path.join("data", "sdd")
-    sdd_df = pd.read_csv(os.path.join(path_to_sdd, "song_describer.csv"))
+    sdd_csv_path = os.path.join(path_to_sdd, "song_describer.csv")
+
+    if not os.path.isfile(sdd_csv_path):
+        raise FileNotFoundError(f"{sdd_csv_path} does not exist. Download it from https://zenodo.org/records/10072001")
+    sdd_df = pd.read_csv(sdd_csv_path)
+
     path_to_mc = os.path.join("data", "musiccaps")
-    mc_df = pd.read_csv(os.path.join(path_to_mc, "musiccaps-public.csv"))
+    mc_csv_path = os.path.join(path_to_mc, "musiccaps-public.csv")
+
+    if not os.path.isfile(sdd_csv_path):
+        raise FileNotFoundError(f"{sdd_csv_path} does not exist. Download it from https://huggingface.co/datasets/google/MusicCaps/tree/main")
+
+    mc_df = pd.read_csv(mc_csv_path)
 
     audio_paths = []
     for audio_id, dataset in zip(audio_ids, datasets):
