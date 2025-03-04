@@ -151,7 +151,7 @@ def get_finegrained_genre_scores(
 
 
 def get_all_categories():
-    benchmark = pd.read_csv("data/muchomusic.csv")
+    benchmark = pd.read_csv("../data/muchomusic.csv")
     all_genres = benchmark["genre"].tolist()
     knowledge_categories = benchmark["music_knowledge"].tolist()
     reasoning_categories = benchmark["music_reasoning"].tolist()
